@@ -71,7 +71,7 @@ class LinkedList {
 
     contains(value) {
         for (let i = 0; i < this.size; i++) {
-            if (this.at(i) === value) {
+            if (this.at(i).value.key === value || this.at(i).value === value) {
                 return true;
             }
         }
@@ -80,7 +80,7 @@ class LinkedList {
 
     find(value) {
         for (let i = 0; i < this.size; i++) {
-            if (this.at(i) === value) {
+            if (this.at(i).value.key === value || this.at(i).value === value) {
                 return i;
             }
         }
