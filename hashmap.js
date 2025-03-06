@@ -34,4 +34,12 @@ class HashMap {
         }
         //once you reach the load factor, grow the buckets to double their capacity
     }
+
+    get(key) {
+        let index = this.map[hashCode].find(key);
+        if (index !== null) {
+            let node = this.map[hashCode].at(index);
+            return node.value;
+        } else return null;
+    }
 }
