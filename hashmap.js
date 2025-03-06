@@ -12,7 +12,7 @@ class HashMap {
 
         let prime = 31;
         for (let i = 0; i < key.length; i++) {
-            hashCode = (prime * hashCode + key.charCodeAt(i)) % capacity;
+            hashCode = (prime * hashCode + key.charCodeAt(i)) % this.capacity;
         }
 
         return hashCode;
@@ -21,14 +21,17 @@ class HashMap {
     set(key, value) {
         let hashCode = this.hash(key);
 
-        if (map[hashCode] !== undefined && map[hashCode].key === key) {
-            
+        if (this.map[hashCode] === undefined) {
+            this.map[hashCode] = new LinkedList();
         }
-        map[hashCode] = {key, value};
-        // if (hashCode in map) {
-        //     Object.assign(key, value);
-        // }
-        // map[this.hash(key)] = value;
+
+        let index = this.map[hashCode].find(key);
+        if (index !== null) {
+            let node = this.map[hashCode].at(index);
+            node.value = { key, value };
+        } else {
+            this.map[hashCode].append({ key, value });
+        }
         //once you reach the load factor, grow the buckets to double their capacity
     }
 }
