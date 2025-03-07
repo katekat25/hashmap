@@ -79,11 +79,16 @@ class HashMap {
 
     keys() {
         let array = [];
-        for (let i = 0; i < this.length; i++) {
-            array[i] = this.map[i].getHead.value;
+        let i = 0;
+        for (const linkedList of this.map) {
+            if (linkedList !== undefined) {
+                for (let j = 0; j < linkedList.size; j++) {
+                    array[i] = linkedList.at(j).value.key;
+                    i++;
+                }
+            }
         }
-        return this.map;
-        //???
+        return array;
     }
 
     // values() {
@@ -91,13 +96,17 @@ class HashMap {
     // }
 
     entries() {
-        let buckets = Object.entries(this.map);
-        console.log(buckets);
-        let keyValueArray = buckets.map((linkedList) => {
-            return linkedList.toString();
-        })
-        return keyValueArray;
-        //works i think
+        let array = [];
+        let i = 0;
+        for (const linkedList of this.map) {
+            if (linkedList !== undefined) {
+                for (let j = 0; j < linkedList.size; j++) {
+                    array[i] = linkedList.at(j).value;
+                    i++;
+                }
+            }
+        }
+        return array;
     }
 }
 
