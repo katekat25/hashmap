@@ -91,9 +91,19 @@ class HashMap {
         return array;
     }
 
-    // values() {
-
-    // }
+    values() {
+        let array = [];
+        let i = 0;
+        for (const linkedList of this.map) {
+            if (linkedList !== undefined) {
+                for (let j = 0; j < linkedList.size; j++) {
+                    array[i] = linkedList.at(j).value.value;
+                    i++;
+                }
+            }
+        }
+        return array;
+    }
 
     entries() {
         let array = [];
