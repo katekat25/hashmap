@@ -90,7 +90,7 @@ class LinkedList {
     toString() {
         let string = "";
         for (let i = 0; i < this.size; i++) {
-            string += " ( " + this.at(i).value + " ) ";
+            string += " ( " + this.at(i).value.key + " : " + this.at(i).value.value + " ) ";
             if (this.at(i).nextNode !== null) {
                 string += "->";
             } else {

@@ -1,3 +1,6 @@
+//WHERE I LEFT OFF:
+//I was last working on getting entries() to implement correctly. I suspect the issue may be that LinkedList objects are not printing their contents correctly. This may just be a rabbit hole though, so feel free to test other methods. You've got this and you aren't stupid.
+
 import { LinkedList } from "./linkedlist.js"
 
 class HashMap {
