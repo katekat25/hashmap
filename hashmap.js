@@ -8,7 +8,7 @@ class HashMap {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
         this.map = [];
-        this.length = 0;
+        this.numberOfKeys = 0;
     }
 
     #extract(property = null) {
@@ -32,7 +32,6 @@ class HashMap {
         }
 
         return hashCode;
-        //works
     }
 
     set(key, value) {
@@ -50,9 +49,7 @@ class HashMap {
             this.map[hashCode].append({ key, value });
         }
 
-        this.length++;
-        //works
-        //once you reach the load factor, grow the buckets to double their capacity
+        this.numberOfKeys++;
     }
 
     get(key) {
@@ -67,21 +64,20 @@ class HashMap {
     has(key) {
         let hashCode = this.hash(key);
         return this.map[hashCode]?.contains(key) ?? false;
-        //does this work??
     }
 
     remove(key) {
-        let hashCode = this.hash(key);
-        let index = this.map[hashCode].find(key);
-        if (index !== null) {
-            let node = this.map[hashCode].at(index);
-            return node.value;
-        } else return null;
-        this.length--;
+        if (this.has(key)) {
+            let hashCode = this.hash(key);
+            let index = this.map[hashCode].find(key);
+            this.map[hashCode].removeAt(index);
+            this.numberOfKeys--;
+            return true;
+        } else return false;
     }
 
     length() {
-        return this.length;
+        return this.numberOfKeys;
     }
 
     clear() {

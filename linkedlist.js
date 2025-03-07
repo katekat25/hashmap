@@ -97,7 +97,21 @@ class LinkedList {
                 string += "-> null";
             }
         }
-        console.log(string);
+        return string;
+    }
+
+    removeAt(index) {
+        if (index < 0 || index >= this.size) return;
+
+        if (index === 0) {
+            this.head = this.head.nextNode;
+            if (this.size === 1) this.tail = null;
+        } else {
+            let previous = this.at(index - 1);
+            previous.nextNode = previous.nextNode.nextNode;
+            if (index === this.size - 1) this.tail = previous;
+        }
+        this.size--;
     }
 }
 
