@@ -11,6 +11,18 @@ class HashMap {
         this.length = 0;
     }
 
+    #extract(property = null) {
+        let array = [];
+        for (const linkedList of this.map) {
+            if (linkedList !== undefined) {
+                for (let j = 0; j < linkedList.size; j++) {
+                    array.push(property ? linkedList.at(j).value[property] : linkedList.at(j).value);
+                }
+            }
+        }
+        return array;
+    }
+
     hash(key) {
         let hashCode = 0;
 
@@ -78,45 +90,15 @@ class HashMap {
     }
 
     keys() {
-        let array = [];
-        let i = 0;
-        for (const linkedList of this.map) {
-            if (linkedList !== undefined) {
-                for (let j = 0; j < linkedList.size; j++) {
-                    array[i] = linkedList.at(j).value.key;
-                    i++;
-                }
-            }
-        }
-        return array;
+        return this.#extract("key")
     }
 
     values() {
-        let array = [];
-        let i = 0;
-        for (const linkedList of this.map) {
-            if (linkedList !== undefined) {
-                for (let j = 0; j < linkedList.size; j++) {
-                    array[i] = linkedList.at(j).value.value;
-                    i++;
-                }
-            }
-        }
-        return array;
+        return this.#extract("value");
     }
 
     entries() {
-        let array = [];
-        let i = 0;
-        for (const linkedList of this.map) {
-            if (linkedList !== undefined) {
-                for (let j = 0; j < linkedList.size; j++) {
-                    array[i] = linkedList.at(j).value;
-                    i++;
-                }
-            }
-        }
-        return array;
+        return this.#extract();
     }
 }
 
