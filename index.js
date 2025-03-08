@@ -1,6 +1,6 @@
 import { HashMap } from "./hashmap.js"
 
-const test = new HashMap(0.75, 12);
+const test = new HashMap(0.75, 16);
 
 test.set('apple', 'red')
 test.set('banana', 'yellow')
@@ -15,6 +15,3 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-console.log(test.keys());
-console.log(test.remove("lion"));
-console.log(test.keys());
