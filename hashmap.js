@@ -1,6 +1,3 @@
-//WHERE I LEFT OFF:
-//I was last working on getting entries() to implement correctly. I suspect the issue may be that LinkedList objects are not printing their contents correctly. This may just be a rabbit hole though, so feel free to test other methods. You've got this and you aren't stupid.
-
 import { LinkedList } from "./linkedlist.js"
 
 class HashMap {
@@ -21,6 +18,17 @@ class HashMap {
             }
         }
         return array;
+    }
+
+    #resize() {
+        this.capacity *= 2;
+        let oldEntries = this.entries();
+        this.map = [];
+        this.numberOfKeys = 0;
+
+        for (const { key, value } of oldEntries) {
+            this.set(key, value);
+        }
     }
 
     hash(key) {
@@ -50,6 +58,11 @@ class HashMap {
         }
 
         this.numberOfKeys++;
+
+        //check load factor
+        if ((this.numberOfKeys / this.capacity) > this.loadFactor) {
+            this.#resize();
+        }
     }
 
     get(key) {
